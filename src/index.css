@@ -1,0 +1,427 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  background-color: black;
+  width: 98vw;
+}
+
+.navbar {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.navbar-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-inline: 10px;
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
+.input_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input_search {
+  height: 3.5vw;
+  width: 25vw;
+  background-color: white;
+  border-radius: 25px;
+  font-size: 1.5vw;
+  padding-left: 1.5vw;
+  color: black;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  font-size: 16px;
+  color: black;
+}
+
+.principalMovie_image {
+  width: 98vw;
+  height: 60vw;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.watchButtons_container {
+  width: 40vw;
+  height: 10vw;
+  gap: 44px;
+  opacity: 0px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-left: 50%;
+  position: absolute;
+  margin: 20% 30%;
+}
+
+.principalButton {
+  width: 25vw;
+  height: 6vw;
+  padding: 10px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 5px 0px 0px 0px;
+  font-size: 2vw;
+  font-weight: 700;
+  color: white;
+}
+
+.principalButton:hover {
+  background-color: red;
+}
+
+.focusButton {
+  background-color: red;
+}
+
+.otherButton {
+  background-color: transparent;
+  border: solid 2px red;
+}
+
+.movieInfo_container {
+  width: 55vw;
+  height: fit-content;
+  top: 30vw;
+  left: 5vw;
+  gap: 0px;
+  padding: 10px;
+  padding-left: 20px;
+  opacity: 0px;
+  position: relative;
+  background-color: #24242480;
+}
+
+.movieInfo {
+  width: 55vw;
+  height: 3vw;
+  padding: 10px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 20px 0px 0px 0px;
+  opacity: 0px;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+
+.movieSingleTag {
+  background-color: white;
+  height: 3vw;
+  width: fit-content;
+  display: row;
+  padding: 0px 10px;
+  gap: 10px;
+  border-radius: 20px;
+  opacity: 0px;
+  color: black;
+  align-content: center;
+  font-size: 1.2vw;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.movieInfo_container-title {
+  font-size: 3vw;
+}
+
+.movieBasicInfo {
+  white-space: nowrap;
+  align-content: center;
+  margin: 1vw;
+  height: 0vw;
+  width: 6vw;
+  font-size: 1.5vw;
+}
+
+.movieDescription {
+  width: 55vw;
+  font-size: 1.4vw;
+}
+
+.recently_section {
+  padding: 10px;
+  margin-left: 3vw;
+  margin-right: 2vw;
+  margin-right: 20px;
+}
+
+.movieCards_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.minicard_fetch_container {
+  display: flex;
+  flex-direction: row;
+  width: 92vw;
+}
+
+.card {
+  background-color: #000000;
+  border-radius: 8px;
+  margin: 10px;
+  height: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title {
+  font-size: 12px;
+}
+
+.card-description {
+  font-size: 10px;
+}
+
+.movieInfo-card {
+  margin-left: 5px;
+  font-size: 1vw;
+}
+
+.movieMiniatura {
+  width: 6vw;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.trendingCard {
+  width: 24vw;
+  height: 32vw;
+  gap: 0px;
+  border-radius: 10px 0px 0px 0px;
+  opacity: 0px;
+}
+
+.trendingCard .face {
+  position: absolute;
+  width: 28vw;
+  height: 27vw;
+  backface-visibility: hidden;
+  overflow: hidden;
+  font-size: 1.2vw;
+  align-content: center;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.trendingCard .front {
+  transform: perspective(40vw) rotateY(0deg);
+}
+
+.trendingCard .back {
+  transform: perspective(40vw) rotateY(180deg);
+  background-color: black;
+  border-radius: 10px;
+}
+
+.trendingCard:hover .front {
+  transform: perspective(40vw) rotateY(180deg);
+}
+
+.trendingCard:hover .back {
+  transform: perspective(40vw) rotateY(360deg);
+}
+
+.trendingPoster {
+  width: 28vw;
+  height: 27vw;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.moviePrincipalData_trendingCard {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+}
+
+.movieInfo-TrendingHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.5vw;
+  position: relative;
+}
+
+.view_all {
+  margin-top: 30px;
+  font-size: 1.2vw;
+}
+
+.movieInfo-Trendingcard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 50px;
+  margin-top: 28vw;
+}
+
+.cardByCategory {
+  width: 20vw;
+  height: 30vw;
+  gap: 16px;
+  opacity: 0px;
+}
+
+.cardByCategory .face {
+  position: absolute;
+  width: 20vw;
+  height: 22vw;
+  backface-visibility: hidden;
+  overflow: hidden;
+  font-size: 1.2vw;
+  align-content: center;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.cardByCategory .front {
+  transform: perspective(40vw) rotateY(0deg);
+}
+
+.cardByCategory .back {
+  transform: perspective(40vw) rotateY(180deg);
+  background-color: black;
+  border-radius: 10px;
+}
+
+.cardByCategory:hover .front {
+  transform: perspective(40vw) rotateY(180deg);
+}
+
+.cardByCategory:hover .back {
+  transform: perspective(40vw) rotateY(360deg);
+}
+
+.posterByCategory {
+  width: 20vw;
+  height: 22vw;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.trendingCard_title {
+  font-size: 1.5vw;
+}
+
+.principalIMG {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 744px;
+}
+
+.movieInfo_ByCategory {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 50px;
+  height: max-content;
+  margin-top: 22vw;
+}
+
+.miniInfoTags {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.buttonQuality {
+  width: 2.5vw;
+  height: 2.8vw;
+  border-radius: 5px;
+  border: none;
+  background-color: red;
+  font-size: 1vw;
+}
+
+.buttonRunningTime {
+  width: 6vw;
+  height: 2.8vw;
+  border-radius: 5px;
+  border: 1px solid red;
+  background-color: transparent;
+  font-size: 1vw;
+}
+
+.results_hidden {
+  display: none;
+}
+
+.movie_results {
+  display: grid;
+  grid-template-columns: repeat(4, 14vw);
+  grid-template-rows: repeat(5, 1fr);
+ row-gap: 1vw;
+  top: 4vw;
+  padding: 2vw;
+  background-color: #242424;
+  position: absolute;
+  z-index: 2;
+  gap: 1vw;
+}
+
+.results{
+  width: 99vw;
+  display: grid;
+  margin-left: 8vw;
+  grid-template-columns: repeat(6, 14vw);
+  grid-template-rows: repeat(4, 23vw);
+  top: 4vw;
+  padding: 2vw;
+  background-color: #242424;
+  gap: 1vw;
+}
+
+.results_img {
+  height: 18vw;
+  width: 14vw;
+}
+
+.login_input{
+  height: 2vw;
+  width: 34vw;
+  margin-left: 2vw;
+}
+
+.login_form{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin: 5vw;
+gap: 2vw;
+}
