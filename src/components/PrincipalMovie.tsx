@@ -2,7 +2,7 @@ import { MovieInfo } from "./MovieInfo";
 import { WatchButton } from "./WatchButton";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
 import { genreReducer } from "../hooks/useGenres";
@@ -11,13 +11,15 @@ export const PrincipalMovie = () => {
   const [movies, setMovies] = useState([]);
 
   const getMovieData = async () => {
-    const urlMovies = `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}`;
+    const urlMovies = `https://api.themoviedb.org/3/movie/top_rated?api_key=${
+      import.meta.env.VITE_API_KEY
+    }`;
     const response = await fetch(urlMovies);
     const movieData = await response.json();
 
-    const updatedMovies = movieData.results.map(movie => ({
+    const updatedMovies = movieData.results.map((movie) => ({
       ...movie,
-     genre_ids: genreReducer(movie.genre_ids),
+      genre_ids: genreReducer(movie.genre_ids),
     }));
 
     setMovies(updatedMovies);
@@ -26,17 +28,20 @@ export const PrincipalMovie = () => {
   useEffect(() => {
     getMovieData();
   }, []);
-  
 
   return (
     <div className="principalMovie_image">
       <Swiper
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: true,
+        }}
         pagination={true}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
         onSlideChange={() => ""}
-        onSwiper={(swiper) => ""}
+        onSwiper={() => ""}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
@@ -59,7 +64,7 @@ export const PrincipalMovie = () => {
               />
             </div>
             <MovieInfo
-              category={(movie.genre_ids).join(' - ')}
+              category={movie.genre_ids.join(" - ")}
               title={movie.title}
               description={movie.overview}
               year={movie.release_date.substring(0, 4)}

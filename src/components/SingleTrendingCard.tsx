@@ -5,8 +5,15 @@ import "swiper/css";
 import { MoviePrincipalData } from "./MoviePrincipalData";
 import { SingleTag } from "./SingleTag";
 
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  backdrop_path: string;
+}
+
 export const SingleTrendingCard = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const getMovieData = async () => {
     const urlMovies =

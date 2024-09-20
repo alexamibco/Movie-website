@@ -1,8 +1,14 @@
 import { useState } from "react";
 
+interface Movie {
+  id: number;
+  title: string;
+  backdrop_path: string;
+}
+
 export const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const onInputChange = ({ target }) => {
     const { value } = target;
@@ -17,7 +23,7 @@ export const Search = () => {
     const response = await fetch(urlMovies);
     const movieData = await response.json();
 
-    const searchResults = movieData.results.filter((movie) =>
+    const searchResults = movieData.results.filter((movie: Movie) =>
       movie.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -41,18 +47,17 @@ export const Search = () => {
         <div className="movie_results">
           {movies.map((movie) => (
             <div key={movie.id} className="movie_result">
-             
               <img
                 className="results_img"
                 src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
                 alt={movie.title}
               />
-               <p>{movie.title}</p>
+              <p>{movie.title}</p>
             </div>
           ))}
         </div>
       )}
-      
+
       {movies.length === 0 && searchTerm && (
         <div className="results_hidden">No se encontraron resultados.</div>
       )}

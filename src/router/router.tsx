@@ -1,14 +1,16 @@
+import App from "../App";
+import { OtherMovies } from "../components/OtherMovies";
+import { ErrorPage } from "../views/errorPage";
+import { LoginForm } from "../views/Login";
+import { createBrowserRouter} from "react-router-dom";
+
+
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
-      errorElement: (
-        <div>
-          {" "}
-          <h2> '“Straight ahead you can't go very far.”' </h2>
-          <p> That is a Little Prince quote, this is a 404 error 😅</p>
-        </div>
-      ),
+      errorElement: 
+        <ErrorPage/>,
     },
     {
       path: "/login",

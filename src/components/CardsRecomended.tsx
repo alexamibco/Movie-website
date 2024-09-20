@@ -1,6 +1,6 @@
 import { SingleCardRecomended} from "./SingleCardRecomended"
 
-export const CardsRecomended = ({text}) => {
+export const CardsRecomended = ({text}:{text:string}) => {
 
   return (
     <div className="recently_section">

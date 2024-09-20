@@ -4,8 +4,15 @@ import "swiper/css/navigation";
 import "swiper/css";
 import { MiniInfoTags } from "./MiniInfoTags";
 
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  backdrop_path: string;
+}
+
 export const SingleCardByCategory = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const getMovieData = async () => {
     const urlMovies =
@@ -26,7 +33,7 @@ export const SingleCardByCategory = () => {
         spaceBetween={0}
         slidesPerView={4}
         onSlideChange={() => ''}
-        onSwiper={(swiper) => ''}
+        onSwiper={() => ''}
       >
         {movies.map((movie) => (
           <SwiperSlide className="cardByCategory">

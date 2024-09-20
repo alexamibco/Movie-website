@@ -4,8 +4,15 @@ import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
 
+interface Movie {
+  id: number;
+  title: string;
+  backdrop_path: string;
+  release_date: string;
+}
+
 export const MiniCard = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const getMovieData = async () => {
     const urlMovies =
@@ -31,7 +38,7 @@ export const MiniCard = () => {
         onSwiper={(swiper) => ''}
       >
         {movies.map((movie) => (
-          <SwiperSlide className="card">
+          <SwiperSlide className="minicard">
             <div>
               <img
                 className="movieMiniatura"

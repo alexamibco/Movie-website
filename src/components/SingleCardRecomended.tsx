@@ -4,8 +4,15 @@ import "swiper/css/navigation";
 import "swiper/css";
 import { MiniInfoTags } from "./MiniInfoTags";
 
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  backdrop_path: string;
+}
+
 export const SingleCardRecomended = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const getMovieData = async () => {
     const urlMovies =

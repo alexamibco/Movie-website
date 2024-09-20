@@ -1,11 +1,16 @@
 import { useEffect, useState  } from "react";
 
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+}
+
 export const OtherMovies = () => {
    const API_URL = "https://api.themoviedb.org/3";
-  const API_KEY = `${import.meta.env.VITE_API_KEY}`;
   const URL_IMAGE= 'https://image.tmdb.org/t/p/original'
   
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   
   const getMovieData = async () => {
@@ -28,7 +33,7 @@ export const OtherMovies = () => {
 {movies.map((movie)=>(
     <div className="otherMovies_card"
      key={movie.id}>
-        <img className="results_img" src={`${URL_IMAGE + movie.poster_path}`} alt=""/>
+        <img className="otherMovies_img" src={`${URL_IMAGE + movie.poster_path}`} alt=""/>
         <h4>{movie.title}</h4>
     </div>
 ))}
@@ -38,8 +43,3 @@ export const OtherMovies = () => {
   );
 };
 
-/* <div className="results">
-{results.map((movie) => (
-  <div key={movie.id}>{movie.title}</div>
-))}
-</div> */

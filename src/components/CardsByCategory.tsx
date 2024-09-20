@@ -1,6 +1,6 @@
 import { SingleCardByCategory} from "./SingleCardByCategory"
 
-export const CardsByCategory = ({text}) => {
+export const CardsByCategory = ({text}:{text:string}) => {
 
   return (
     <div className="recently_section">
