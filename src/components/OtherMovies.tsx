@@ -14,7 +14,7 @@ export const OtherMovies = () => {
   
   useEffect(() => {
     const fetchMovies = async () => {
-      const updatedMovies = await getMovieData("popular");
+      const updatedMovies = await getMovieData("popular",2);
       setMovies(updatedMovies);
     };
 
