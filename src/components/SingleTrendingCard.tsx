@@ -4,6 +4,8 @@ import "swiper/css/navigation";
 import "swiper/css";
 import { MoviePrincipalData } from "./MoviePrincipalData";
 import { SingleTag } from "./SingleTag";
+import { getMovieData } from "../hooks/useGetMovieData";
+
 
 interface Movie {
   id: number;
@@ -15,19 +17,14 @@ interface Movie {
 export const SingleTrendingCard = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const getMovieData = async () => {
-    const urlMovies =
-      `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`;
-
-    const response = await fetch(urlMovies);
-    const movieData = await response.json();
-    setMovies(movieData.results);
-  };
-
   useEffect(() => {
-    getMovieData();
-  }, []);
+    const fetchMovies = async () => {
+      const updatedMovies = await getMovieData("popular", 1);
+      setMovies(updatedMovies);
+    };
 
+    fetchMovies();
+  }, []);
   return (
     <div className="minicard_fetch_container">
       <Swiper

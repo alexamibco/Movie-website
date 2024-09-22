@@ -29,7 +29,6 @@ useEffect(() => {
   focusRef.current.focus()
 }, [])
 
-
   return (
     <form onSubmit={onSubmit} className="login_form">
       <div className="login_item">

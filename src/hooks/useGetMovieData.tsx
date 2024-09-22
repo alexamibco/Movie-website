@@ -1,17 +1,15 @@
-import { useState } from "react";
 import { genreReducer } from "../hooks/useGenres";
 
-const [movies, setMovies] = useState([]);
+export const getMovieData = async (type:string, page:number) => {
+  const basic_url = "https://api.themoviedb.org/3";
+  const urlMovies = `${basic_url}/movie/${type}?api_key=${
+    import.meta.env.VITE_API_KEY
+  }&page=${page}`;
+  const response = await fetch(urlMovies);
+  const movieData = await response.json();
 
-export const getMovieData = async () => {
-    const urlMovies = `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}`;
-    const response = await fetch(urlMovies);
-    const movieData = await response.json();
-
-    const updatedMovies = movieData.results.map(movie => ({
-      ...movie,
-     genre_ids: genreReducer(movie.genre_ids),
-    }));
-
-    setMovies(updatedMovies);
-  };
+  return movieData.results.map((movie) => ({
+    ...movie,
+    genre_ids: genreReducer(movie.genre_ids),
+  }));
+};

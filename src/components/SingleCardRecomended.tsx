@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css";
 import { MiniInfoTags } from "./MiniInfoTags";
+import { getMovieData } from "../hooks/useGetMovieData";
 
 interface Movie {
   id: number;
@@ -14,18 +15,15 @@ interface Movie {
 export const SingleCardRecomended = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const getMovieData = async () => {
-    const urlMovies =
-      `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_API_KEY}&page=2`;
-
-    const response = await fetch(urlMovies);
-    const movieData = await response.json();
-    setMovies(movieData.results);
-  };
-
   useEffect(() => {
-    getMovieData();
+    const fetchMovies = async () => {
+      const updatedMovies = await getMovieData("now_playing", 2)
+      setMovies(updatedMovies);
+    };
+
+    fetchMovies();
   }, []);
+
 
   return (
     <div className="minicard_fetch_container">

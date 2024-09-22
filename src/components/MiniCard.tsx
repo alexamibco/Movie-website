@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
+import { getMovieData } from "../hooks/useGetMovieData";
 
 interface Movie {
   id: number;
@@ -14,17 +15,13 @@ interface Movie {
 export const MiniCard = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const getMovieData = async () => {
-    const urlMovies =
-      `https://api.themoviedb.org/3/trending/all/week?api_key=${import.meta.env.VITE_API_KEY}`;
-
-    const response = await fetch(urlMovies);
-    const movieData = await response.json();
-    setMovies(movieData.results);
-  };
-
   useEffect(() => {
-    getMovieData();
+    const fetchMovies = async () => {
+      const updatedMovies = await getMovieData("top_rated", 2);
+      setMovies(updatedMovies);
+    };
+
+    fetchMovies();
   }, []);
 
   return (
@@ -47,7 +44,7 @@ export const MiniCard = () => {
               />
             </div>
             <div key={movie.id} className="movieInfo-card">
-              <h3>{movie.title}</h3>
+              <h5>{movie.title}</h5>
               <p>{movie.release_date}</p>
               <small>ID: {movie.id}</small>
             </div>

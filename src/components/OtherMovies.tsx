@@ -1,4 +1,5 @@
 import { useEffect, useState  } from "react";
+import { getMovieData } from "../hooks/useGetMovieData";
 
 interface Movie {
   id: number;
@@ -7,24 +8,19 @@ interface Movie {
 }
 
 export const OtherMovies = () => {
-   const API_URL = "https://api.themoviedb.org/3";
   const URL_IMAGE= 'https://image.tmdb.org/t/p/original'
   
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [movie, setMovie] = useState({ title: "Loading Movies" });
   
-  const getMovieData = async () => {
-    const urlMovies =
-      `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`;
-
-    const response = await fetch(urlMovies);
-    const movieData = await response.json();
-    setMovies(movieData.results);
-  };
-
   useEffect(() => {
-    getMovieData();
+    const fetchMovies = async () => {
+      const updatedMovies = await getMovieData("popular");
+      setMovies(updatedMovies);
+    };
+
+    fetchMovies();
   }, []);
+
 
   return (
     <div>
