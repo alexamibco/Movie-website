@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Search } from "./Search";
 
 export const Navbar = () => {
@@ -14,7 +15,7 @@ export const Navbar = () => {
         <li className="navbar-item">Series</li>
         <li className="navbar-item">Animation</li>
         <li className="navbar-item">
-          <a href="/login">Login/SingUp</a>
+          <NavLink to='/login'>Login/SingUp</NavLink>
         </li>
         <li className="navbar-item"><i className="fa-solid fa-bell"></i></li>
       </ul>

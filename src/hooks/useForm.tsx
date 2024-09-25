@@ -13,5 +13,5 @@ export const useForm = (initialForm = {}) => {
     });
   };
 
-  return { form, onInputChange };
+  return { ...form, form, onInputChange };
 };
